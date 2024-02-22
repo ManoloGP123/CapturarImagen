@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 21-02-2024 a las 01:58:56
+-- Tiempo de generación: 22-02-2024 a las 06:43:38
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Versión de PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `accesos` (
   `idAccesos` int(11) NOT NULL,
-  `IdTipoAcceso` int(11) NOT NULL,
+  `IdparaAcceso` int(11) DEFAULT NULL,
   `Ultimo` datetime NOT NULL,
   `Usuarios_idUsuarios` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -38,10 +38,17 @@ CREATE TABLE `accesos` (
 -- Volcado de datos para la tabla `accesos`
 --
 
-INSERT INTO `accesos` (`idAccesos`, `IdTipoAcceso`, `Ultimo`, `Usuarios_idUsuarios`) VALUES
+INSERT INTO `accesos` (`idAccesos`, `IdparaAcceso`, `Ultimo`, `Usuarios_idUsuarios`) VALUES
 (1, 1, '0000-00-00 00:00:00', 8),
 (2, 2, '0000-00-00 00:00:00', 8),
-(3, 3, '0000-00-00 00:00:00', 8);
+(3, 3, '0000-00-00 00:00:00', 8),
+(4, 1, '0000-00-00 00:00:00', 8),
+(5, 2, '0000-00-00 00:00:00', 8),
+(6, 2, '0000-00-00 00:00:00', 8),
+(7, 1, '0000-00-00 00:00:00', 8),
+(8, 1, '0000-00-00 00:00:00', 3),
+(9, 1, '0000-00-00 00:00:00', 8),
+(10, 1, '0000-00-00 00:00:00', 8);
 
 -- --------------------------------------------------------
 
@@ -134,9 +141,8 @@ INSERT INTO `usuarios` (`idUsuarios`, `Nombres`, `Apellidos`, `contrasenia`, `Co
 (3, 'Luis', 'Llerena', '123', 'correo@gmail.com', 5, '1803971371', '', '2024-02-21 00:58:44'),
 (4, 'xxxx', 'xxxx', '123', 'otro@otro.com', 5, '1804233151', '', '2024-02-21 00:58:44'),
 (5, 'Luis Antonio', 'Llerena Ocaña', '123', 'lleroc@gmail.com', 6, '1801770569', '', '2024-02-21 00:58:44'),
-(6, 'kjhvkjhbk', 'bkjhbkjhbkjhb', '', '', 6, '1802491181', '', '2024-02-21 00:58:44'),
 (7, 'kjhvkjhbk', 'bkjhbkjhbkjhb', '', '', 6, '1803971730', '', '2024-02-21 00:58:44'),
-(8, 'Andrés', 'García', '1234', 'andres_garcia3010@hotmail.com', 5, '2350017170', '', '2024-02-21 00:58:44');
+(8, 'Erick', 'Guamán', '123', 'erickshitos46@hotmail.com', 5, '1726290727', '', '2024-02-21 02:31:52');
 
 -- --------------------------------------------------------
 
@@ -170,7 +176,7 @@ INSERT INTO `usuarios_roles` (`Usuarios_idUsuarios`, `Roles_idRoles`, `idUsuario
 ALTER TABLE `accesos`
   ADD PRIMARY KEY (`idAccesos`),
   ADD KEY `fk_Accesos_Usuarios1_idx` (`Usuarios_idUsuarios`),
-  ADD KEY `Acceso_tipoAcceso` (`IdTipoAcceso`);
+  ADD KEY `Acceso_tipoAcceso` (`IdparaAcceso`);
 
 --
 -- Indices de la tabla `roles`
@@ -213,7 +219,7 @@ ALTER TABLE `usuarios_roles`
 -- AUTO_INCREMENT de la tabla `accesos`
 --
 ALTER TABLE `accesos`
-  MODIFY `idAccesos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `idAccesos` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -253,7 +259,7 @@ ALTER TABLE `usuarios_roles`
 -- Filtros para la tabla `accesos`
 --
 ALTER TABLE `accesos`
-  ADD CONSTRAINT `Acceso_tipoAcceso` FOREIGN KEY (`IdTipoAcceso`) REFERENCES `tipo_acceso` (`IdTipoAcceso`),
+  ADD CONSTRAINT `Acceso_tipoAcceso` FOREIGN KEY (`IdparaAcceso`) REFERENCES `tipo_acceso` (`IdTipoAcceso`),
   ADD CONSTRAINT `fk_Accesos_Usuarios1` FOREIGN KEY (`Usuarios_idUsuarios`) REFERENCES `usuarios` (`idUsuarios`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -273,3 +279,4 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
