@@ -56,7 +56,7 @@ var tiposacceso = () => {
     $.post("controllers/tipoacceso.controllers.php?op=todos", async (lista) => {
       lista = JSON.parse(lista);
       $.each(lista, (index, tipo) => {
-        html += `<option value="${tipo.IdTipoAcceso}">${tipo.Detalle}</option>`;
+        html += `<option value="${tipo.IdparaAcceso}">${tipo.Detalle}</option>`;
       });
       await $("#tipo").html(html);
       resolve();

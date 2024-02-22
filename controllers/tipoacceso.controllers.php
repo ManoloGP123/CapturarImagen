@@ -6,7 +6,7 @@ error_reporting(0);
 
 $TipoAccesos = new TipoAccesos;
 switch ($_GET["op"]) {
-        /*TODO: Procedimiento para listar todos los registros */
+        /*TODO:Listar todos los registros */
     case 'todos':
         $data = array();
         $datos = $TipoAccesos->todos();
@@ -15,37 +15,37 @@ switch ($_GET["op"]) {
         }
         echo json_encode($todos);
         break;
-        /*TODO: Procedimiento para sacar un registro */
+        /*TODO: Sacar un registro */
     case 'uno':
-        $IdTipoAcceso = $_POST["IdTipoAcceso"];
+        $IdparaAcceso = $_POST["IdparaAcceso"];
         $datos = array();
-        $datos = $TipoAccesos->uno($IdTipoAcceso);
+        $datos = $IdparaAcceso->uno($IdparaAcceso);
         $res = mysqli_fetch_assoc($datos);
         echo json_encode($res);
         break;
-        /*TODO: Procedimiento para insertar */
+        /*TODO: Para insertar */
     case 'insertar':
 
         $Detalle = $_POST["Detalle"];
 
         $datos = array();
-        $datos = $TipoAccesos->Insertar($Detalle);
+        $datos = $IdparaAcceso->Insertar($Detalle);
         echo json_encode($datos);
         break;
-        /*TODO: Procedimiento para actualizar */
+        /*TODO: actualizar */
     case 'actualizar':
-        $IdTipoAcceso = $_POST["IdTipoAcceso"];
+        $IdparaAcceso = $_POST["IdparaAcceso"];
         $Detalle = $_POST["Detalle"];
 
         $datos = array();
-        $datos = $TipoAccesos->Actualizar($IdTipoAcceso, $Detalle);
+        $datos = $TipoAccesos->Actualizar($IdparaAcceso, $Detalle);
         echo json_encode($datos);
         break;
-        /*TODO: Procedimiento para eliminar */
+        /*TODO: Eliminar */
     case 'eliminar':
-        $IdTipoAcceso = $_POST["IdTipoAcceso"];
+        $IdparaAcceso = $_POST["IdparaAcceso"];
         $datos = array();
-        $datos = $TipoAccesos->Eliminar($IdTipoAcceso);
+        $datos = $TipoAccesos->Eliminar($IdparaAcceso);
         echo json_encode($datos);
         break;
 }

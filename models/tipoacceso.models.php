@@ -3,7 +3,7 @@
 require_once('../config/conexion.php');
 class TipoAccesos
 {
-    /*TODO: Procedimiento para sacar todos los registros*/
+    
     public function todos()
     {
         $con = new ClaseConectar();
@@ -13,17 +13,17 @@ class TipoAccesos
         return $datos;
         $con->close();
     }
-    /*TODO: Procedimiento para sacar un registro*/
-    public function uno($IdTipoAcceso)
+    
+    public function uno($IdparaAcceso)
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoConectar();
-        $cadena = "SELECT * FROM `Tipo_Acceso` WHERE `IdTipoAcceso`=$IdTipoAcceso";
+        $cadena = "SELECT * FROM `Tipo_Acceso` WHERE `IdparaAcceso`=$IdparaAcceso";
         $datos = mysqli_query($con, $cadena);
         return $datos;
         $con->close();
     }
-    /*TODO: Procedimiento para insertar */
+
     public function Insertar($Detalle)
     {
         $con = new ClaseConectar();
@@ -37,12 +37,12 @@ class TipoAccesos
         }
         $con->close();
     }
-    /*TODO: Procedimiento para actualizar */
-    public function Actualizar($IdTipoAcceso, $Detalle)
+
+    public function Actualizar($IdparaAcceso, $Detalle)
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoConectar();
-        $cadena = "UPDATE `Tipo_Acceso` SET `Detalle`='$Detalle' WHERE `IdTipoAcceso`=$IdTipoAcceso";
+        $cadena = "UPDATE `Tipo_Acceso` SET `Detalle`='$Detalle' WHERE `IdparaAcceso`=$IdparaAcceso";
         if (mysqli_query($con, $cadena)) {
             return "ok";
         } else {
@@ -50,12 +50,12 @@ class TipoAccesos
         }
         $con->close();
     }
-    /*TODO: Procedimiento para Eliminar */
-    public function Eliminar($IdTipoAcceso)
+    
+    public function Eliminar($IdparaAcceso)
     {
         $con = new ClaseConectar();
         $con = $con->ProcedimientoConectar();
-        $cadena = "delete from Tipo_Acceso where IdTipoAcceso = $IdTipoAcceso";
+        $cadena = "delete from Tipo_Acceso where IdparaAcceso = $IdparaAcceso";
         if (mysqli_query($con, $cadena)) {
             return true;
         } else {
